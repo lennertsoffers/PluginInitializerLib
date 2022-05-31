@@ -1,7 +1,0 @@
-com\lennertsoffers\plugininitializer\initializers\Initializer.class
-com\lennertsoffers\plugininitializer\exceptions\ImproperAnnotationException.class
-com\lennertsoffers\plugininitializer\annotations\EventListener.class
-com\lennertsoffers\plugininitializer\initializers\CommandInitializer.class
-com\lennertsoffers\plugininitializer\initializers\EventInitializer.class
-com\lennertsoffers\plugininitializer\annotations\NamedCommandExecutor.class
-com\lennertsoffers\plugininitializer\PluginInitializer.class
