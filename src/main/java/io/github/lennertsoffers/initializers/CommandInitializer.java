@@ -6,8 +6,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.reflections.Reflections;
+import org.yaml.snakeyaml.Yaml;
 
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -37,6 +40,8 @@ public class CommandInitializer extends Initializer {
                     if (pluginCommand != null) {
                         // Set the instance of the class to handle this command
                         pluginCommand.setExecutor(commandExecutor);
+
+                        this.loadPluginYaml();
                     }
                 } else {
                     // Throw an exception if the annotated class doesn't implement the Listener interface
@@ -49,4 +54,15 @@ public class CommandInitializer extends Initializer {
         }
     }
 
+    private void loadPluginYaml() {
+        Yaml yaml = new Yaml();
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("plugin.yml");
+        Map<String, Map<String, Object>> map = yaml.load(inputStream);
+
+        System.out.println(map);
+
+        Map<String, Object> commands = map.get("commands");
+
+        commands.keySet().forEach(System.out::println);
+    }
 }
