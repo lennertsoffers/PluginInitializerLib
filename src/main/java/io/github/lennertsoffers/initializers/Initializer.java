@@ -1,4 +1,4 @@
-package com.lennertsoffers.plugininitializer.initializers;
+package io.github.lennertsoffers.initializers;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

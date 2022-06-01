@@ -1,4 +1,4 @@
-package com.lennertsoffers.plugininitializer.annotations;
+package io.github.lennertsoffers.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

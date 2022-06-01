@@ -1,7 +1,7 @@
-package com.lennertsoffers.plugininitializer.initializers;
+package io.github.lennertsoffers.initializers;
 
-import com.lennertsoffers.plugininitializer.annotations.EventListener;
-import com.lennertsoffers.plugininitializer.exceptions.ImproperAnnotationException;
+import io.github.lennertsoffers.annotations.EventListener;
+import io.github.lennertsoffers.exceptions.ImproperAnnotationException;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.reflections.Reflections;

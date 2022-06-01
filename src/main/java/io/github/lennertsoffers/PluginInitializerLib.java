@@ -1,8 +1,8 @@
-package com.lennertsoffers.plugininitializer;
+package io.github.lennertsoffers;
 
-import com.lennertsoffers.plugininitializer.initializers.CommandInitializer;
-import com.lennertsoffers.plugininitializer.initializers.EventInitializer;
-import com.lennertsoffers.plugininitializer.initializers.Initializer;
+import io.github.lennertsoffers.initializers.CommandInitializer;
+import io.github.lennertsoffers.initializers.EventInitializer;
+import io.github.lennertsoffers.initializers.Initializer;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
