@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.lennertsoffers</groupId>
+    <groupId>com.github.lennertsoffers</groupId>
     <artifactId>PluginInitializerLib</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>PluginInitializerLib</name>
-    <description>Spigot library that automatically let you register events and commands with a single annotation</description>
-    <url>lennertsoffers.com</url>
+    <description>A library that provides annotations to easily and quickly register events and commands to your Spigot Plugin</description>
+    <url>https://github.com/lennertsoffers/PluginInitializerLib</url>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
