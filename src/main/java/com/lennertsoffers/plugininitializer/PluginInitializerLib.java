@@ -7,7 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
-public class PluginInitializer {
+public class PluginInitializerLib {
     /**
      * Registers all classes annotated with:
      * <ul>
