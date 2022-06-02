@@ -14,11 +14,13 @@ import java.util.Set;
 public abstract class Initializer {
     private final JavaPlugin plugin;
     private final Set<Class<?>> classSet;
+    private final String annotation;
     final Class<?> type;
 
     public Initializer(JavaPlugin plugin, Reflections reflections, Class<? extends Annotation> annotation, Class<?> type) {
         this.plugin = plugin;
         this.type = type;
+        this.annotation = annotation.getSimpleName();
         this.classSet = reflections.getTypesAnnotatedWith(annotation);
     }
 
@@ -35,12 +37,24 @@ public abstract class Initializer {
                 // Create an instance of the class
                 Object listenerObject = clazz.getConstructor().newInstance();
 
-                if (clazz.isAssignableFrom(type)){
+                if (type.isAssignableFrom(clazz)) {
                     this.initialize(clazz, listenerObject);
                 } else {
-                    // Throw an exception if the annotated class doesn't implement the Listener interface
-                    String className = clazz.getName();
-                    throw new ImproperAnnotationException("Classes annotated with the NamedCommandExecutor must implement the org.bukkit.event.Listener interface\nThe type of the class with the wrongly placed annotation was " + className);
+                    StringBuilder stringBuilder = new StringBuilder("Classes annotated with ");
+                    stringBuilder.append(this.annotation);
+                    stringBuilder.append(" must ");
+                    if (clazz.isInterface()) {
+                        stringBuilder.append("implement ");
+                    } else {
+                        stringBuilder.append("extend ");
+                    }
+                    stringBuilder.append(this.type.getName());
+                    stringBuilder.append("\n\tThe type of the class with the wrongly placed annotation was: ");
+                    stringBuilder.append(clazz.getSimpleName());
+
+                    String message = stringBuilder.toString();
+
+                    throw new ImproperAnnotationException(message);
                 }
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 e.printStackTrace();
