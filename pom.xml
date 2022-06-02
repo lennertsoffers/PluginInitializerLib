@@ -6,7 +6,7 @@
 
     <groupId>io.github.lennertsoffers</groupId>
     <artifactId>PluginInitializerLib</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <name>PluginInitializerLib</name>
     <description>A library that provides annotations to easily and quickly register events and commands to your Spigot Plugin</description>
