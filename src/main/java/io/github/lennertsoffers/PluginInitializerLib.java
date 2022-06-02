@@ -7,7 +7,10 @@ import io.github.lennertsoffers.initializers.CommandInitializer;
 import io.github.lennertsoffers.initializers.EventInitializer;
 import io.github.lennertsoffers.initializers.Initializer;
 import io.github.lennertsoffers.initializers.RunnableInitializer;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.reflections.Reflections;
 
 import java.util.List;
@@ -26,9 +29,9 @@ public class PluginInitializerLib {
         Reflections reflections = new Reflections(root);
 
         List.of(
-            new CommandInitializer(plugin, reflections, NamedCommandExecutor.class),
-            new EventInitializer(plugin, reflections, EventListener.class),
-            new RunnableInitializer(plugin, reflections, ScheduledBukkitRunnable.class)
+            new CommandInitializer(plugin, reflections, NamedCommandExecutor.class, CommandExecutor.class),
+            new EventInitializer(plugin, reflections, EventListener.class, Listener.class),
+            new RunnableInitializer(plugin, reflections, ScheduledBukkitRunnable.class, BukkitRunnable.class)
         ).forEach(Initializer::init);
     }
 }
