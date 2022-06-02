@@ -15,7 +15,7 @@
     ·
     <a href="https://github.com/lennertsoffers/PluginInitializerLib/issues">Request Feature</a>
     .
-    <a href="https://www.spigotmc.org/resources/elemental-stones.100459/">View on Spigot</a>
+    <a href="https://www.spigotmc.org/resources/plugininitializerlib.102391/">View on Spigot</a>
   </p>
 </div>
 
