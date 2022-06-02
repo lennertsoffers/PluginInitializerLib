@@ -1,6 +1,10 @@
 package io.github.lennertsoffers.initializers;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.reflections.Reflections;
+
+import java.lang.annotation.Annotation;
+import java.util.Set;
 
 /**
  * Parent class for all initializers
@@ -8,20 +12,20 @@ import org.bukkit.plugin.java.JavaPlugin;
 public abstract class Initializer {
     // The plugin instance
     private final JavaPlugin plugin;
-    // The path where to look for annotated classes
-    private final String root;
+    // Set of classes annotated by the annotation
+    private final Set<Class<?>> classSet;
 
-    public Initializer(JavaPlugin plugin, String root) {
+    public Initializer(JavaPlugin plugin, Reflections reflections, Annotation annotation) {
         this.plugin = plugin;
-        this.root = root;
+        this.classSet = reflections.getTypesAnnotatedWith(annotation.getClass());
     }
 
     public JavaPlugin getPlugin() {
         return this.plugin;
     }
 
-    public String getRoot() {
-        return this.root;
+    public Set<Class<?>> getClassSet() {
+        return classSet;
     }
 
     /**

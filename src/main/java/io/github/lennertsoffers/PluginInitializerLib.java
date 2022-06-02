@@ -4,6 +4,7 @@ import io.github.lennertsoffers.initializers.CommandInitializer;
 import io.github.lennertsoffers.initializers.EventInitializer;
 import io.github.lennertsoffers.initializers.Initializer;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.reflections.Reflections;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public class PluginInitializerLib {
      * @param root the path where to look for annotated classes
      */
     public static void init(final JavaPlugin plugin, final String root) {
+        Reflections reflections = new Reflections(root);
+
         List.of(
             new CommandInitializer(plugin, root),
             new EventInitializer(plugin, root)
