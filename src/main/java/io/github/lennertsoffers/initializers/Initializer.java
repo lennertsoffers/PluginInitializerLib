@@ -15,21 +15,24 @@ public abstract class Initializer {
     // Set of classes annotated by the annotation
     private final Set<Class<?>> classSet;
 
-    public Initializer(JavaPlugin plugin, Reflections reflections, Annotation annotation) {
+    public Initializer(JavaPlugin plugin, Reflections reflections, Class<? extends Annotation> annotation) {
         this.plugin = plugin;
-        this.classSet = reflections.getTypesAnnotatedWith(annotation.getClass());
+        this.classSet = reflections.getTypesAnnotatedWith(annotation);
     }
 
     public JavaPlugin getPlugin() {
         return this.plugin;
     }
 
-    public Set<Class<?>> getClassSet() {
-        return classSet;
+    /**
+     * Loop the classes in the set and execute the initialize method on them
+     */
+    public void init() {
+        this.classSet.forEach(this::initialize);
     }
 
     /**
      * Method to be called to initialize a kind of classes
      */
-    public abstract void initialize();
+    protected abstract void initialize(Class<?> clazz);
 }

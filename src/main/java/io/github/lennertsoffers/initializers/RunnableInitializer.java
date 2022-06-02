@@ -7,34 +7,30 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.reflections.Reflections;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Set;
 
 public class RunnableInitializer extends Initializer {
-    public RunnableInitializer(JavaPlugin plugin, String root) {
-        super(plugin, root);
+    public RunnableInitializer(JavaPlugin plugin, Reflections reflections, Class<? extends Annotation> annotation) {
+        super(plugin, reflections, annotation);
     }
 
     @Override
-    public void initialize() {
-        // Get all the classes that are annotated with the @ScheduledBukkitTask annotation
-        Set<Class<?>> scheduledBukkitRunnableClasses = new Reflections(this.getRoot()).getTypesAnnotatedWith(ScheduledBukkitRunnable.class);
-
+    protected void initialize(Class<?> clazz) {
         try {
-            for (Class<?> scheduledBukkitRunnableClass : scheduledBukkitRunnableClasses) {
-                ScheduledBukkitRunnable scheduledBukkitRunnableAnnotation = scheduledBukkitRunnableClass.getAnnotation(ScheduledBukkitRunnable.class);
+            ScheduledBukkitRunnable scheduledBukkitRunnableAnnotation = clazz.getAnnotation(ScheduledBukkitRunnable.class);
 
-                // Create an instance of the class
-                Object bukkitRunnableObject = scheduledBukkitRunnableClass.getConstructor().newInstance();
+            // Create an instance of the class
+            Object bukkitRunnableObject = clazz.getConstructor().newInstance();
 
-                if (bukkitRunnableObject instanceof BukkitRunnable bukkitRunnable) {
-                    this.runBukkitRunnable(scheduledBukkitRunnableAnnotation, bukkitRunnable);
-                } else {
-                    // Throw an exception if the annotated class doesn't implement the BukkitRunnable interface
-                    String className = scheduledBukkitRunnableClass.getName();
-                    throw new ImproperAnnotationException("Classes annotated with the ScheduledBukkitRunnable must implement the BukkitRunnable interface\nThe type of the class with the wrongly placed annotation was " + className);
-                }
+            if (bukkitRunnableObject instanceof BukkitRunnable bukkitRunnable) {
+                this.runBukkitRunnable(scheduledBukkitRunnableAnnotation, bukkitRunnable);
+            } else {
+                // Throw an exception if the annotated class doesn't implement the BukkitRunnable interface
+                String className = clazz.getName();
+                throw new ImproperAnnotationException("Classes annotated with the ScheduledBukkitRunnable must implement the BukkitRunnable interface\nThe type of the class with the wrongly placed annotation was " + className);
             }
+
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
