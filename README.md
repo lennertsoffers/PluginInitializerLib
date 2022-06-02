@@ -47,7 +47,7 @@ If you have a Maven project, just add the dependency to your pom.xml
 ### Download On Spigot
 The project is also published as a Spigot resource, so you can download it on their website if you wish.
 
-This is the Resource Url: 
+[Download on Spigot](https://www.spigotmc.org/resources/plugininitializerlib.102391/)
 
 
 ## Usage
