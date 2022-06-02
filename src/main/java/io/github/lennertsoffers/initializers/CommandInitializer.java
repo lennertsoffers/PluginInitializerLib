@@ -39,7 +39,7 @@ public class CommandInitializer extends Initializer {
                         pluginCommand.setExecutor(commandExecutor);
                     }
                 } else {
-                    // Throw an exception if the annotated class doesn't implement the Listener interface
+                    // Throw an exception if the annotated class doesn't implement the CommandExecutor interface
                     String className = commandExecutorClass.getName();
                     throw new ImproperAnnotationException("Classes annotated with the NamedCommandExecutor must implement the org.bukkit.command.CommandExecutor interface\nThe type of the class with the wrongly placed annotation was " + className);
                 }
